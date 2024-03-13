@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Stage, Exam
 from django.contrib.auth.models import User
 from career.models import Career
@@ -11,6 +11,33 @@ from .forms import CandidateForm
 def home(request):
     user = request.user
     return render(request, 'exam/home.html', {"user": user})
+
+
+def question(request, m_id, q_id=1):
+    user = request.user
+    exam = user.exam
+
+    if request.method == 'POST':
+        answer = request.POST['answer']
+        questions = exam.breakdown_set.filter(question__module_id=m_id)
+        question = questions[q_id-1]
+        question.answer = answer
+        question.save()
+        return redirect('exam:question', m_id, q_id+1)
+    
+    try:
+        questions = exam.breakdown_set.filter(question__module_id=m_id)
+        question = questions[q_id-1].question
+        answer = questions[q_id-1].answer
+        return render(request,
+                    'exam/question.html',
+                    {"question": question,
+                    "m_id": m_id,
+                    "q_id": q_id,
+                    "answers": answer,
+                    })
+    except IndexError:
+        return redirect('exam:home')
 
 
 def create(request):
