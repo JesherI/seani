@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
+{% block title %}
+  Home
+{% endblock %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/style-home.css' %}" />
+{% endblock %}
 {% block content %}
-<h1>Welcome{{ user.firstname }}</h1>
-<a href="{% url 'login' %}"> Ingresar</a>
+  <center>
+    <h1 class="gradient-text">Welcome {{ user.firstname }}</h1>
+    <br />
+    <br />
+    <a href="{% url 'login' %}" class="flipper-container">
+      <div id="id" class="flipper">
+        <div class="front-face">
+          <span data-hover="Clicked">Login</span>
+        </div>
+      </div>
+    </a>
+  </center>
 {% endblock %}

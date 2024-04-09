@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body,
+html {
+    height: 100%;
+    background: #222222;
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+* {
+    color: white;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    background-color: #ffcccc;
+    /* Color de fondo rojo claro */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.info {
+    height: 100px;
+    width: 50%;
+    background-color: #ea4c88;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]+label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+input[type="radio"]+label:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked+label:before {
+    background-color: #ea4c88;
+}
+
+input[type="submit"] {
+    background-color: #ea4c88;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #ea4c88;
+}

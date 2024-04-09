@@ -6,13 +6,18 @@ from career.models import Career
 
 # Create your views here.
 from .forms import CandidateForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     user = request.user
+    if user.is_superuser:
+        return redirect('admin:index')
     return render(request, 'exam/home.html', {"user": user})
 
 
+@login_required
 def question(request, m_id, q_id=1):
     user = request.user
     exam = user.exam
@@ -24,22 +29,29 @@ def question(request, m_id, q_id=1):
         question.answer = answer
         question.save()
         return redirect('exam:question', m_id, q_id+1)
-    
+
     try:
         questions = exam.breakdown_set.filter(question__module_id=m_id)
+        if questions.count() == 0:
+            return redirect('exam:home')
+        if q_id < questions.count():
+            return redirect('exam:home')
         question = questions[q_id-1].question
         answer = questions[q_id-1].answer
         return render(request,
-                    'exam/question.html',
-                    {"question": question,
-                    "m_id": m_id,
-                    "q_id": q_id,
-                    "answers": answer,
-                    })
+                      'exam/question.html',
+                      {"question": question,
+                       "m_id": m_id,
+                       "q_id": q_id,
+                       "answers": answer,
+                       })
     except IndexError:
+        exam.compute_score_by_module(m_id)
+        exam.compute_score()
         return redirect('exam:home')
 
 
+@login_required
 def create(request):
     if request.method == 'POST':
         form = CandidateForm(request.POST)

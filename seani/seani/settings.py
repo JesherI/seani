@@ -10,16 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import cloudinary.api
+import cloudinary.uploader
+import cloudinary
 import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 load_dotenv()
-
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -92,8 +91,8 @@ WSGI_APPLICATION = 'seani.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'seani',
-        'USER':'root',
+        'NAME': 'seani',
+        'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': 3306,
@@ -136,6 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -148,9 +148,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/exam'
 LOGOUT_REDIRECT_URL = '/'
 
-cloudinary.config( 
-  cloud_name = str(os.environ.get('CLOUD_NAME')), 
-  api_key = str(os.environ.get('API_KEY')), 
-  api_secret = str(os.environ.get('API_SECRET')),
-  secure = True
+cloudinary.config(
+    cloud_name=str(os.environ.get('CLOUD_NAME')),
+    api_key=str(os.environ.get('API_KEY')),
+    api_secret=str(os.environ.get('API_SECRET')),
+    secure=True
 )

@@ -3,20 +3,35 @@
 {% block title %}
   Home Aspirantes
 {% endblock %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
 
 {% block content %}
-  <h1>Welcome {{ user.first_name }}</h1>
-  <ul>
-    {% for module in user.exam.modules.all %}
-      <li>
-        <a href="{% url 'exam:question' module.id %}">{{ module.description }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-  <hr />
-
-  <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Salir" />
-  </form>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Bienvenido, {{ user.first_name }}</div>
+          <div class="card-body">
+            <h5 class="card-title">Módulos de examen:</h5>
+            <ul class="list-group">
+              {% for module in user.exam.modules.all %}
+                <li class="list-group-item">
+                  <a href="{% url 'exam:question' module.id %}">Preguntas de {{ module.description }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="card-footer">
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Salir</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -1,0 +1,93 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(41, 41, 41);
+  margin: 0;
+  padding: 0;
+  color: #333;
+  /* Color de texto principal */
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.card-header {
+  background-color: #ff009d;
+  /* Azul */
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 15px 20px;
+}
+
+.card-body {
+  padding: 20px 0;
+}
+
+.card-title {
+  margin-bottom: 20px;
+}
+
+.card-footer {
+  border-top: 1px solid #ccc;
+  /* Color de borde superior */
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Estilos para el botón de salida */
+.btn-logout {
+  background-color: #dc3545;
+  /* Rojo */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+  /* Rojo más oscuro al pasar el mouse */
+}
+
+/* Estilos para enlaces */
+a {
+  color: #ea4c88;
+  /* Azul */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ea4c88;
+  /* Azul más oscuro al pasar el mouse */
+}
+
+/* Estilos para botones */
+.btn {
+  display: inline-block;
+  background-color: #ea4c88;
+  /* Azul */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ea4c88;
+  /* Azul más oscuro al pasar el mouse */
+}
