@@ -1,0 +1,6 @@
+Django        
+cloudinary    
+python-dotenv 
+PyMySQL       
+gunicorn
+cryptography

@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-e(rlbmu=-(7+e2hw(!w_*l!v8u*@+%kzk)b7m*rugm9+qb0#07
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'seani.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'seani',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': str(os.environ.get('DB_NAME')),
+        'USER': str(os.environ.get('DB_USER')),
+        'PASSWORD': str(os.environ.get('DB_PASSWORD')), 
         'HOST': 'localhost',
         'PORT': 3306,
     }
@@ -124,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'America/Mexico_city'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -135,7 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_DIS = [BASE_DIR / 'static/']
+STATIC_ROOT = BASE_DIR / 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
